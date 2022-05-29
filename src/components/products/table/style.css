@@ -1,0 +1,9 @@
+.tableHeader {
+  background: rgba(22, 122, 122, 0.434);
+  box-shadow: 0 8px 32px 0 rgba(0, 128, 128, 0.13);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(10, 75, 51, 0.18);
+  color: white;
+  text-align: center;
+}
