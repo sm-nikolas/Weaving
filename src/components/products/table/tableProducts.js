@@ -9,7 +9,7 @@ import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 import "./style.css";
 import api from "../../../services/api";
-import { Button, useToast } from "@chakra-ui/react";
+import { useToast } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
 
 const columns = [
@@ -35,7 +35,6 @@ export default function TableProducts() {
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const toast = useToast();
 
-  // requisicao de dados
   useEffect(() => {
     async function loadProducts() {
       const response = await api.get("/produto");
@@ -44,7 +43,6 @@ export default function TableProducts() {
     loadProducts();
   }, []);
 
-  // função para deletar produto
   async function handleDelete(id) {
     try {
       await api.delete(`/produto/${id}`);
@@ -60,56 +58,6 @@ export default function TableProducts() {
     } catch (err) {
       toast({
         title: "Erro ao deletar produto!",
-        description: "",
-        status: "error",
-        duration: 9000,
-        position: "top-right",
-        isClosable: true,
-      });
-    }
-  }
-
-  // função para editar produto
-  async function handleEdit(id) {
-    try {
-      await api.put(`/products/${id}`);
-      setData(data.filter((product) => product.id !== id));
-      toast({
-        title: "Produto editado com sucesso!",
-        description: "",
-        status: "success",
-        duration: 9000,
-        position: "top-right",
-        isClosable: true,
-      });
-    } catch (err) {
-      toast({
-        title: "Erro ao editar produto!",
-        description: "",
-        status: "error",
-        duration: 9000,
-        position: "top-right",
-        isClosable: true,
-      });
-    }
-  }
-
-  // função para adicionar produto
-  async function handleAdd(id) {
-    try {
-      await api.post(`/products/${id}`);
-      setData(data.filter((product) => product.id !== id));
-      toast({
-        title: "Produto adicionado com sucesso!",
-        description: "",
-        status: "success",
-        position: "top-right",
-        duration: 9000,
-        isClosable: true,
-      });
-    } catch (err) {
-      toast({
-        title: "Erro ao adicionar produto!",
         description: "",
         status: "error",
         duration: 9000,
